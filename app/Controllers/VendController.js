@@ -4,15 +4,14 @@ import { vendService } from "../Services/VendService.js"
 
 function _drawTotal() {
   console.log('[VendController]: total')
-  vendService.total
-  document.getElementById('total').innerHTML = total
-  console.log(total)
+  let total = 0
+
 }
 function _drawSnacks() {
   console.log('[VendController]: snacks')
   let snacks = state.snacks
   let template = ''
-  snacks.forEach(s => template += `<li> ${s.name} | ${s.price} </li>`)
+  snacks.forEach(s => template += s.Template)
   document.getElementById('snacks').innerHTML = template
 }
 export class VendController {
@@ -23,5 +22,9 @@ export class VendController {
   addCoin() {
     vendService.addCoin()
     console.log('[VendController]: added coins')
+  }
+  vend(snackName) {
+    vendService.vend(snackName)
+    console.log('[VendController]: vending')
   }
 }
